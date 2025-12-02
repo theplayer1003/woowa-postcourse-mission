@@ -1,0 +1,33 @@
+# 1. Gradle Build Artifacts
+build/
+.gradle/
+
+# 2. IDE Settings (IntelliJ IDEA)
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+
+# 3. IDE Settings (Eclipse)
+.classpath
+.project
+.settings/
+bin/
+.apt_generated/
+.factorypath
+.springBeans
+
+# 4. IDE Settings (VS Code, NetBeans)
+.vscode/
+nbproject/
+nbbuild/
+dist/
+
+# 5. OS System Files
+.DS_Store
+Thumbs.db
+
+# 6. Gradle Wrapper
+!gradle/wrapper/gradle-wrapper.jar
+!gradle/wrapper/gradle-wrapper.properties
