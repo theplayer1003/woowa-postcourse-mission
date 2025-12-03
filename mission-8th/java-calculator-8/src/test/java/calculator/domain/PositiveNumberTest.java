@@ -12,7 +12,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 class PositiveNumberTest {
 
     @Test
-    void positiveNumber_CreateSuccess() {
+    void from_CreateSuccess() {
         final PositiveNumber positiveNumber = PositiveNumber.from("1");
 
         assertThat(positiveNumber.getValue()).isEqualTo(1);
@@ -20,7 +20,7 @@ class PositiveNumberTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"a", " ", "!", "1.5"})
-    void positiveNumber_CreateValidateNotNumber() {
+    void from_CreateValidateNotNumber() {
         assertThatThrownBy(() -> PositiveNumber.from("a"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 숫자가 아닙니다.");
@@ -28,7 +28,7 @@ class PositiveNumberTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"0", "-1", "-100"})
-    void positiveNumber_CreateValidatePositiveNumber() {
+    void from_CreateValidatePositiveNumber() {
         assertThatThrownBy(() -> PositiveNumber.from("0"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 양수가 아닙니다.");
