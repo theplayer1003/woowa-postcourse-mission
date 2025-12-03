@@ -20,16 +20,16 @@ class PositiveNumberTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"a", " ", "!", "1.5"})
-    void from_CreateValidateNotNumber() {
-        assertThatThrownBy(() -> PositiveNumber.from("a"))
+    void from_CreateValidateNotNumber(String value) {
+        assertThatThrownBy(() -> PositiveNumber.from(value))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 숫자가 아닙니다.");
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"0", "-1", "-100"})
-    void from_CreateValidatePositiveNumber() {
-        assertThatThrownBy(() -> PositiveNumber.from("0"))
+    void from_CreateValidatePositiveNumber(String value) {
+        assertThatThrownBy(() -> PositiveNumber.from(value))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 양수가 아닙니다.");
     }
