@@ -37,7 +37,7 @@ class DelimiterTest {
     @Test
     void from_CreateNullCheck(){
         assertThatThrownBy(() -> from(null))
-                .isInstanceOf(NullPointerException.class)
+                .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 구분자는 null 일 수 없습니다.");
     }
 }

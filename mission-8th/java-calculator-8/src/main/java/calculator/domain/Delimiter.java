@@ -1,12 +1,13 @@
 package calculator.domain;
 
+import calculator.util.Validator;
 import java.util.Objects;
 
 public class Delimiter {
     private final String value;
 
     private Delimiter(String value) {
-        Objects.requireNonNull(value, "[ERROR] 구분자는 null 일 수 없습니다.");
+        Validator.requireNonNull(value, "[ERROR] 구분자는 null 일 수 없습니다.");
 
         validateSingleCharacter(value);
         validateNotNumber(value);
