@@ -6,12 +6,12 @@ public class PositiveNumber {
     private final int value;
 
     private PositiveNumber(int value) {
+        validatePositiveNumber(value);
         this.value = value;
     }
 
     public static PositiveNumber from(String text) {
         int parsedValue = parseToInt(text);
-        validatePositiveNumber(parsedValue);
 
         return new PositiveNumber(parsedValue);
     }
