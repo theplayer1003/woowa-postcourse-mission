@@ -1,4 +1,4 @@
-package racingcar.exception;
+package racingcar.global.exception;
 
 public interface ErrorCode {
     String name();

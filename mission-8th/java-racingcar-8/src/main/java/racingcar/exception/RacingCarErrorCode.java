@@ -1,6 +1,7 @@
 package racingcar.exception;
 
-import racingcar.util.MessageUtils;
+import racingcar.global.exception.ErrorCode;
+import racingcar.global.util.MessageUtils;
 
 public enum RacingCarErrorCode implements ErrorCode {
     CAR_NAME_IS_NULL("error.car.name.null"),

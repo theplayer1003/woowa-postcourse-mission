@@ -1,9 +1,7 @@
 package racingcar.domain;
 
-import java.util.Objects;
-import racingcar.exception.BusinessException;
+import racingcar.global.exception.BusinessException;
 import racingcar.exception.RacingCarErrorCode;
-import racingcar.util.Validator;
 
 public record CarName(String carName) {
     public static final int MAXIMUM_CARNAME_LENGTH = 5;

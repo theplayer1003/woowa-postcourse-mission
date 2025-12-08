@@ -1,7 +1,6 @@
-package racingcar.util;
+package racingcar.global.util;
 
-import java.util.Objects;
-import racingcar.exception.BusinessException;
+import racingcar.global.exception.BusinessException;
 import racingcar.exception.RacingCarErrorCode;
 
 public class Validator {

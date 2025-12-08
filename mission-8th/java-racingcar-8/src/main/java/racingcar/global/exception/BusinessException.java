@@ -1,4 +1,4 @@
-package racingcar.exception;
+package racingcar.global.exception;
 
 public class BusinessException extends RuntimeException {
     private final ErrorCode errorCode;

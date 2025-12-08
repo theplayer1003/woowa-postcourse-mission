@@ -1,4 +1,4 @@
-package racingcar.util;
+package racingcar.global.util;
 
 import java.text.MessageFormat;
 import java.util.MissingResourceException;
