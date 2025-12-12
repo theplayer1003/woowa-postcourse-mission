@@ -6,7 +6,7 @@ import java.util.ResourceBundle;
 
 public class MessageUtils {
     private static final String BUNDLE_NAME = "exceptionMessages";
-    private static final ResourceBundle resourceBunlde = loadBundle();
+    private static final ResourceBundle resourceBundle = loadBundle();
 
     private static ResourceBundle loadBundle() {
         try {
@@ -18,7 +18,7 @@ public class MessageUtils {
 
     public static String getMessage(String key) {
         try {
-            return resourceBunlde.getString(key);
+            return resourceBundle.getString(key);
         } catch (MissingResourceException e) {
             return key;
         }

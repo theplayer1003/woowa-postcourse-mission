@@ -1,11 +1,9 @@
 package subway.service;
 
-import java.util.List;
-import java.util.Optional;
 import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.Station;
-import subway.exception.SubWayErrorCode;
+import subway.domain.exception.SubWayErrorCode;
 import subway.global.exception.BusinessException;
 import subway.service.dto.request.AddStationInLineDto;
 import subway.service.dto.request.CreateLineDto;

@@ -1,7 +1,7 @@
 package subway.domain;
 
 import java.util.Objects;
-import subway.exception.SubWayErrorCode;
+import subway.domain.exception.SubWayErrorCode;
 import subway.global.exception.BusinessException;
 
 public class Station {
@@ -17,7 +17,7 @@ public class Station {
     private void validateNameLength(String stationName) {
         if (stationName.length() < MAXIMUM_STATION_NAME_LENGTH) {
             throw new BusinessException(SubWayErrorCode.STATION_NAME_LENGTH_INVALID, MAXIMUM_STATION_NAME_LENGTH,
-                    stationName.length());
+                    stationName);
         }
     }
 

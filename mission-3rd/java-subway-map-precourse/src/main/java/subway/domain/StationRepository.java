@@ -7,7 +7,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 public class StationRepository {
-    private final List<Station> stations = new ArrayList<>();
+    private static final List<Station> stations = new ArrayList<>();
 
     public void save(Station station) {
         stations.add(station);

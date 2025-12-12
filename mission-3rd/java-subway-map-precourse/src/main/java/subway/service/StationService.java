@@ -3,7 +3,7 @@ package subway.service;
 import java.util.Optional;
 import subway.domain.Station;
 import subway.domain.StationRepository;
-import subway.exception.SubWayErrorCode;
+import subway.domain.exception.SubWayErrorCode;
 import subway.global.exception.BusinessException;
 import subway.service.dto.response.StationNamesResponseDto;
 

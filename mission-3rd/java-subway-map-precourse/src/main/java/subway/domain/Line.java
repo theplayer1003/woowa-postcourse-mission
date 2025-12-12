@@ -3,7 +3,7 @@ package subway.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import subway.exception.SubWayErrorCode;
+import subway.domain.exception.SubWayErrorCode;
 import subway.global.exception.BusinessException;
 
 public class Line {
@@ -39,7 +39,7 @@ public class Line {
         if (index <= 0 && index >= stations.size() - 1) {
             throw new BusinessException(SubWayErrorCode.LINE_ADD_INVALID_INDEX, stations.size(), index);
         }
-        stations.add(index, station);
+        stations.add(index - 1, station);
     }
 
     public void removeStation(Station targetStation) {

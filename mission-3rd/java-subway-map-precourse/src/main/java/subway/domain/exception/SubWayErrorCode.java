@@ -1,4 +1,4 @@
-package subway.exception;
+package subway.domain.exception;
 
 import subway.global.exception.ErrorCode;
 import subway.global.util.MessageUtils;
