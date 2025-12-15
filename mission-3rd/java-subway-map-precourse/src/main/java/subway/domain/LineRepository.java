@@ -7,7 +7,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 public class LineRepository {
-    private static final List<Line> lines = new ArrayList<>();
+    private final List<Line> lines = new ArrayList<>();
 
     public void save(Line line) {
         lines.add(line);

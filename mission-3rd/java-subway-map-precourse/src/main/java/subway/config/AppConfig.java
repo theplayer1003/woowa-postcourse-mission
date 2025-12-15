@@ -16,6 +16,9 @@ public class AppConfig {
 
     private final Scanner scanner;
 
+    private final StationRepository stationRepository = new StationRepository();
+    private final LineRepository lineRepository = new LineRepository();
+
     public AppConfig(Scanner scanner) {
         this.scanner = scanner;
     }
@@ -48,7 +51,7 @@ public class AppConfig {
     }
 
     private LineRepository lineRepository() {
-        return new LineRepository();
+        return this.lineRepository;
     }
 
     private StationService stationService() {
@@ -68,6 +71,6 @@ public class AppConfig {
     }
 
     private StationRepository stationRepository() {
-        return new StationRepository();
+        return this.stationRepository;
     }
 }
