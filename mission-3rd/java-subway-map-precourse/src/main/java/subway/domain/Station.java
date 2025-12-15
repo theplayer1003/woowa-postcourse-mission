@@ -5,7 +5,7 @@ import subway.domain.exception.SubWayErrorCode;
 import subway.global.exception.BusinessException;
 
 public class Station {
-    public static final int MAXIMUM_STATION_NAME_LENGTH = 2;
+    public static final int MINIMUM_STATION_NAME_LENGTH = 2;
 
     private String stationName;
 
@@ -15,8 +15,8 @@ public class Station {
     }
 
     private void validateNameLength(String stationName) {
-        if (stationName.length() < MAXIMUM_STATION_NAME_LENGTH) {
-            throw new BusinessException(SubWayErrorCode.STATION_NAME_LENGTH_INVALID, MAXIMUM_STATION_NAME_LENGTH,
+        if (stationName.length() < MINIMUM_STATION_NAME_LENGTH) {
+            throw new BusinessException(SubWayErrorCode.STATION_NAME_LENGTH_INVALID, MINIMUM_STATION_NAME_LENGTH,
                     stationName);
         }
     }

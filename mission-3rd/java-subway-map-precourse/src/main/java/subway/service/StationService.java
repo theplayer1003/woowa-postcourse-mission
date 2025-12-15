@@ -46,7 +46,7 @@ public class StationService {
         return stationRepository.existByName(targetName);
     }
 
-    public Optional<Station> findStationByName(String targetName) {
+    Optional<Station> findStationByName(String targetName) {
         return stationRepository.findByName(targetName);
     }
 }

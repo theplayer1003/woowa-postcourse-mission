@@ -27,8 +27,8 @@ public class Line {
     }
 
     private void initFinalStation(Station upBoundTerminal, Station downBoundTerminal) {
-        stations.add(downBoundTerminal);
         stations.add(upBoundTerminal);
+        stations.add(downBoundTerminal);
     }
 
     public void addStation(Station station) {
@@ -63,7 +63,7 @@ public class Line {
     }
 
     public List<Station> getStations() {
-        return stations;
+        return List.copyOf(stations);
     }
 
     @Override

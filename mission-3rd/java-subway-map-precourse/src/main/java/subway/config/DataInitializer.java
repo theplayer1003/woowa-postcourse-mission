@@ -30,9 +30,9 @@ public class DataInitializer {
     }
 
     private void initLines() {
-        lineService.createLine(new CreateLineDto("2호선", "역삼역", "교대역"));
-        lineService.createLine(new CreateLineDto("3호선", "매봉역", "교대역"));
-        lineService.createLine(new CreateLineDto("신분당선", "양재시민의숲역", "강남역"));
+        lineService.createLine(new CreateLineDto("2호선", "교대역", "역삼역"));
+        lineService.createLine(new CreateLineDto("3호선", "교대역", "매봉역"));
+        lineService.createLine(new CreateLineDto("신분당선", "강남역", "양재시민의숲역"));
 
         lineService.addStationInLine(new AddStationInLineDto("2호선", "강남역", 2));
         lineService.addStationInLine(new AddStationInLineDto("3호선", "남부터미널역", 2));
