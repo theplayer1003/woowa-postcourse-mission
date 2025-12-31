@@ -11,4 +11,14 @@ public enum MenuType {
     MenuType(String description) {
         this.description = description;
     }
+
+    public static MenuType findByDescription(String description) {
+        for (MenuType type : values()) {
+            if (type.description.equals(description)) {
+                return type;
+            }
+        }
+
+        throw new IllegalArgumentException("유효하지 않은 메뉴 타입입니다 " + description);
+    }
 }

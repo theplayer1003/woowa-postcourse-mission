@@ -1,15 +1,14 @@
-package christmas.domain.exception;
+package christmas.global.exception;
 
-import christmas.global.exception.ErrorCode;
 import christmas.global.util.MessageUtils;
 
-public enum ChristmasErrorCode implements ErrorCode {
-    PRICE_CANNOT_NEGATIVE("error.menu.menuprice.negative"),
-    DUMMY("dummy");
+public enum GlobalErrorCode implements ErrorCode {
+    PARAMETER_REQUIRED_NOT_NULL("error.common.input.null"),
+    PARAMETER_REQUIRED_NOT_BLANK("error.common.input.empty");
 
     private final String messageKey;
 
-    ChristmasErrorCode(String messageKey) {
+    GlobalErrorCode(String messageKey) {
         this.messageKey = messageKey;
     }
 
