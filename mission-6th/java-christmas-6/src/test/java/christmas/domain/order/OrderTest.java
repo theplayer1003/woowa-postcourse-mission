@@ -1,12 +1,8 @@
-package christmas.domain;
+package christmas.domain.order;
 
 import static christmas.domain.fixture.ChrismasOrderFixture.*;
-import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
-import christmas.domain.fixture.ChrismasOrderFixture;
-import java.time.LocalDate;
 import org.junit.jupiter.api.Test;
 
 class OrderTest {

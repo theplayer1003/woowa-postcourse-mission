@@ -1,4 +1,4 @@
-package christmas.domain;
+package christmas.domain.order;
 
 import static christmas.domain.fixture.ChrismasOrderFixture.*;
 import static org.assertj.core.api.Assertions.assertThat;

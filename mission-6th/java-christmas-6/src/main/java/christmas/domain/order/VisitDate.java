@@ -1,4 +1,4 @@
-package christmas.domain;
+package christmas.domain.order;
 
 import christmas.domain.exception.ChristmasErrorCode;
 import christmas.global.exception.BusinessException;

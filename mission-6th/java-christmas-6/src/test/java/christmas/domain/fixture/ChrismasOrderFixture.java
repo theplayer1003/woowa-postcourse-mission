@@ -1,11 +1,11 @@
 package christmas.domain.fixture;
 
-import christmas.domain.Menu;
-import christmas.domain.MenuType;
-import christmas.domain.Order;
-import christmas.domain.OrderItem;
-import christmas.domain.OrderItems;
-import christmas.domain.VisitDate;
+import christmas.domain.order.Menu;
+import christmas.domain.order.MenuType;
+import christmas.domain.order.Order;
+import christmas.domain.order.OrderItem;
+import christmas.domain.order.OrderItems;
+import christmas.domain.order.VisitDate;
 import java.util.List;
 
 public class ChrismasOrderFixture {

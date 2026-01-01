@@ -1,7 +1,7 @@
 package christmas.service;
 
-import christmas.domain.Menu;
-import christmas.domain.MenuType;
+import christmas.domain.order.Menu;
+import christmas.domain.order.MenuType;
 import christmas.global.util.CsvReader;
 import christmas.infra.MenuRepository;
 import java.util.List;
