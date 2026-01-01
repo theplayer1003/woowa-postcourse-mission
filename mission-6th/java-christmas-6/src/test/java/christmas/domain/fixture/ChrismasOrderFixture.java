@@ -2,11 +2,11 @@ package christmas.domain.fixture;
 
 import christmas.domain.Menu;
 import christmas.domain.MenuType;
+import christmas.domain.Order;
 import christmas.domain.OrderItem;
 import christmas.domain.OrderItems;
 import christmas.domain.VisitDate;
 import java.util.List;
-import org.junit.jupiter.api.Order;
 
 public class ChrismasOrderFixture {
 
@@ -65,7 +65,9 @@ public class ChrismasOrderFixture {
         return new OrderItems(List.of(items));
     }
 
-    // order
+    public static Order createOrder(int day, OrderItem... items) {
+        return new Order(createOrderItems(items), createVisitDate(day));
+    }
 
     public static VisitDate createVisitDate(int day) {
         return new VisitDate(day);
