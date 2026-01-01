@@ -2,6 +2,9 @@ package christmas.global.util;
 
 import christmas.global.exception.BusinessException;
 import christmas.global.exception.GlobalErrorCode;
+import java.util.Collection;
+import java.util.List;
+import java.util.Objects;
 
 public class Validator {
 
@@ -11,6 +14,19 @@ public class Validator {
         }
 
         return target;
+    }
+
+    public static <T> Collection<T> requireNonNulls(Collection<T> targets, String subject) {
+        requireNonNull(targets, subject);
+
+        final boolean hasNull = targets.stream()
+                .anyMatch(Objects::isNull);
+
+        if (hasNull) {
+            throw new BusinessException(GlobalErrorCode.PARAMETER_REQUIRED_NOT_NULL, subject);
+        }
+
+        return targets;
     }
 
     public static String requireNonNullOrBlank(String target, String subject) {

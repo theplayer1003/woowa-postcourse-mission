@@ -2,12 +2,15 @@ package christmas.domain;
 
 import christmas.domain.exception.ChristmasErrorCode;
 import christmas.global.exception.BusinessException;
+import christmas.global.util.Validator;
+import java.util.Objects;
 
 public class OrderItem {
     private final Menu menu;
     private final int quantity;
 
     public OrderItem(Menu menu, int quantity) {
+        Validator.requireNonNull(menu, "menu");
         validateQuantity(quantity);
 
         this.menu = menu;
@@ -20,8 +23,21 @@ public class OrderItem {
         }
     }
 
-    public boolean isMenuType(MenuType type) {
-        return menu.isType(type);
+    public boolean isMenuType(MenuType target) {
+        return menu.isType(target);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof OrderItem orderItem)) {
+            return false;
+        }
+        return quantity == orderItem.quantity && Objects.equals(menu, orderItem.menu);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(menu, quantity);
     }
 
     public Menu getMenu() {

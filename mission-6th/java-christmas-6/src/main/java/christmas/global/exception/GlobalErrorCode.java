@@ -4,6 +4,7 @@ import christmas.global.util.MessageUtils;
 
 public enum GlobalErrorCode implements ErrorCode {
     PARAMETER_REQUIRED_NOT_NULL("error.common.input.null"),
+    PARAMETER_REQUIRED_NOT_NULL_IN_LIST("error.common.input.nullinlist"),
     PARAMETER_REQUIRED_NOT_BLANK("error.common.input.empty");
 
     private final String messageKey;

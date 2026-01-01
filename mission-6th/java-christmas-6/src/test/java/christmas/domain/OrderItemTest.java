@@ -3,8 +3,10 @@ package christmas.domain;
 import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
+import christmas.global.exception.BusinessException;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -35,12 +37,17 @@ class OrderItemTest {
         }
     }
 
+    @Test
+    void OrderItem_CreateFail_MenuIsNull() {
+        assertThatThrownBy(() -> new OrderItem(null, 1))
+                .isInstanceOf(BusinessException.class)
+                .hasMessageContaining("null 일 수 없습니다.");
+    }
+
     /**
-     * 생성 성공은 isNotNull 및 실제 값이 잘 들어있는지 확인 하는 것
-     * 예외가 던져지지 않았음은 반쪽 짜리
-     *
-     * 생성 성공이란 에러가 안나며 -> 값이 제대로 들어가있나? 를 확인해야하는데
-     * 값이 제대로 들어가져 있음을 확인하는 작업이 에러가 안 났는지 확인하는 작업을 포함함
+     * 생성 성공은 isNotNull 및 실제 값이 잘 들어있는지 확인 하는 것 예외가 던져지지 않았음은 반쪽 짜리
+     * <p>
+     * 생성 성공이란 에러가 안나며 -> 값이 제대로 들어가있나? 를 확인해야하는데 값이 제대로 들어가져 있음을 확인하는 작업이 에러가 안 났는지 확인하는 작업을 포함함
      */
     @ParameterizedTest
     @MethodSource("provideOrderItems")
@@ -88,8 +95,7 @@ class OrderItemTest {
     }
 
     /**
-     * 테스트 하고자 하는 값에 집중하기. 많은 케이스를 테스트하기 위해 파라미터를 받는게 아니다.
-     * 핵심 대상만 테스트 할 수 있다면 나머지는 더미 값을 넣어도 좋다
+     * 테스트 하고자 하는 값에 집중하기. 많은 케이스를 테스트하기 위해 파라미터를 받는게 아니다. 핵심 대상만 테스트 할 수 있다면 나머지는 더미 값을 넣어도 좋다
      */
     @ParameterizedTest
     @CsvSource(value = {
