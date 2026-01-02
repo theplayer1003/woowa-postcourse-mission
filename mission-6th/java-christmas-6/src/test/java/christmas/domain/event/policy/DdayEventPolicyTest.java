@@ -48,5 +48,6 @@ class DdayEventPolicyTest {
 
         assertThat(benefitResult1.getAmount()).isEqualTo(1_000);
         assertThat(benefitResult25.getAmount()).isEqualTo(3_400);
+
     }
 }
