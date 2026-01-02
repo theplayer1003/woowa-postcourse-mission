@@ -1,5 +1,7 @@
 package oncall.domain;
 
+import java.util.Arrays;
+
 public enum LegalHoliday {
     NEWYEAR(1, 1, "신정"),
     MARCHFIRST(3, 1, "삼일절"),
@@ -19,6 +21,16 @@ public enum LegalHoliday {
         this.month = month;
         this.day = day;
         this.description = description;
+    }
+
+    public static LegalHoliday findByMonthAndDay(int monthNumber, int i) {
+        return Arrays.stream(values())
+                .filter(legalHoliday ->
+                        legalHoliday.month == monthNumber &&
+                                legalHoliday.day == i)
+                .findFirst()
+                .orElse(NONE);
+
     }
 
     public String getSuffix() {
