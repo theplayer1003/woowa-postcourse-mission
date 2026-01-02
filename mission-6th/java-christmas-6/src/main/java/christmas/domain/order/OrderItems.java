@@ -24,6 +24,12 @@ public class OrderItems {
                 .sum();
     }
 
+    public int calculateAllAmount() {
+        return orderItems.stream()
+                .mapToInt(OrderItem::calculatePrice)
+                .sum();
+    }
+
     public List<OrderItem> getOrderItems() {
         return orderItems;
     }

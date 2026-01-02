@@ -5,6 +5,7 @@ import christmas.global.exception.BusinessException;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.Month;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Objects;
 
@@ -30,6 +31,12 @@ public class VisitDate {
     public boolean isDdayPeriod() {
         final int day = visitDate.getDayOfMonth();
         return day >= 1 && day <= 25;
+    }
+
+    public int calculateDaysSinceEventStart() {
+        final LocalDate eventStartDate = LocalDate.of(YEAR, MONTH, 1);
+
+        return (int) ChronoUnit.DAYS.between(eventStartDate, visitDate);
     }
 
     public boolean isWeekdaysPeriod() {

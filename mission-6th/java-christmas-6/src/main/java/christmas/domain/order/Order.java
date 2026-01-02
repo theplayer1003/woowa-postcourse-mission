@@ -18,12 +18,20 @@ public class Order {
         return visitDate.isWeekdaysPeriod();
     }
 
+    public boolean isDdayRange() {
+        return visitDate.isDdayPeriod();
+    }
+
     public boolean hasMenuType(MenuType target) {
         return orderItems.hasMenuType(target);
     }
 
     public int countMenuType(MenuType target) {
         return orderItems.countByMenuType(target);
+    }
+
+    public int calculateTotalAmount() {
+        return orderItems.calculateAllAmount();
     }
 
     public OrderItems getOrderItems() {

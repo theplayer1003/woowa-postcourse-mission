@@ -27,6 +27,10 @@ public class OrderItem {
         return menu.isType(target);
     }
 
+    public int calculatePrice() {
+        return menu.getMenuPrice() * quantity;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof OrderItem orderItem)) {
