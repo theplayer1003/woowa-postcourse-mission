@@ -52,12 +52,15 @@
         - `String monthName`
     - 메서드
         - ...
-- 일
+- `Day`
     - 책임
         - 해당 날이 평일인지? 휴일이거나 법정 공휴일인지? 판단한다
     - 필드
-        - 요일: Enum
-        - 법정 공휴일: Enum
+        - `int dayNumber`
+        - `DayOfWeek`: Enum
+        - `LegalHoliday`: Enum
+            - `int month`, `int day`, `String description`
+            - `String getSuffix`
     - 메서드
         - `boolean isWeekDay()`
         - `boolean isWeekendOrHoliday()`

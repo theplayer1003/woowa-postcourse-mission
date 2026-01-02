@@ -4,7 +4,8 @@ import oncall.global.exception.ErrorCode;
 import oncall.global.util.MessageUtils;
 
 public enum OncallErrorCode implements ErrorCode {
-    STAFFNAME_VALIDATE_MAXLENGTH("error.staffname.name.lengthlimit");
+    STAFFNAME_VALIDATE_MAXLENGTH("error.staffname.name.lengthlimit"),
+    DAY_NUMBER_OUT_OF_RANGE("error.day.daynumber.outofrange");
 
     private final String messageKey;
 
