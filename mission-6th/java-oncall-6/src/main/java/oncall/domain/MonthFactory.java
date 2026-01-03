@@ -1,9 +1,7 @@
 package oncall.domain;
 
 import java.time.DayOfWeek;
-import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.Deque;
 import java.util.List;
 import java.util.Map;
 import oncall.domain.exception.OncallErrorCode;
@@ -26,16 +24,17 @@ public class MonthFactory {
     public static Month of(String month, String dayOfWeek) {
         final int monthNumber = parseMonthNubmer(month);
         DayOfWeek currentDayOfWeek = parseDayOfWeek(dayOfWeek);
+        final Integer monthMaxDay = MONTH_MAX_DAYS.get(monthNumber);
 
-        final List<Day> days = getDays(monthNumber, currentDayOfWeek);
+        final List<Day> days = getDays(monthNumber, currentDayOfWeek, monthMaxDay);
 
-        return new Month(monthNumber, days);
+        return new Month(monthNumber, monthMaxDay ,days);
     }
 
-    private static List<Day> getDays(int monthNumber, DayOfWeek currentDayOfWeek) {
+    private static List<Day> getDays(int monthNumber, DayOfWeek currentDayOfWeek, Integer monthMaxDay) {
         List<Day> days = new ArrayList<>();
 
-        for (int dayNumber = 1; dayNumber <= MONTH_MAX_DAYS.get(monthNumber); dayNumber++) {
+        for (int dayNumber = 1; dayNumber <= monthMaxDay; dayNumber++) {
             LegalHoliday legalHoliday = LegalHoliday.findByMonthAndDay(monthNumber, dayNumber);
             final Day day = new Day(dayNumber, currentDayOfWeek, legalHoliday);
             days.add(day);

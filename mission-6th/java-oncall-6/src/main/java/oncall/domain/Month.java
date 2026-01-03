@@ -7,13 +7,15 @@ import oncall.global.util.Validator;
 
 public class Month {
     private final int month;
+    private final int monthMaxDay;
     private final List<Day> days;
 
-    public Month(int month, List<Day> days) {
+    public Month(int month, int monthMaxDay, List<Day> days) {
         Validator.requireNonNulls(days, "days");
         validateMonthRange(month);
 
         this.month = month;
+        this.monthMaxDay = monthMaxDay;
         this.days = days;
     }
 
@@ -29,6 +31,10 @@ public class Month {
 
     public int getMonth() {
         return month;
+    }
+
+    public int getMonthMaxDay() {
+        return monthMaxDay;
     }
 
     public List<Day> getDays() {

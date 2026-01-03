@@ -45,6 +45,13 @@ public class Day {
         return false;
     }
 
+    public boolean isLegalHoliday() {
+        if (legalHoliday != LegalHoliday.NONE) {
+            return true;
+        }
+        return false;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof Day day)) {
@@ -56,6 +63,10 @@ public class Day {
     @Override
     public int hashCode() {
         return Objects.hash(dayNumber, dayOfWeek, legalHoliday);
+    }
+
+    public int getDayNumber() {
+        return dayNumber;
     }
 
     public DayOfWeek getDayOfWeek() {
