@@ -9,5 +9,7 @@ public class WorkOrders {
         this.workOrders = workOrders;
     }
 
-
+    public List<WorkOrder> getWorkOrders() {
+        return workOrders;
+    }
 }
