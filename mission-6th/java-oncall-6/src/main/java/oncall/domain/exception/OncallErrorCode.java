@@ -8,7 +8,8 @@ public enum OncallErrorCode implements ErrorCode {
     DAY_NUMBER_OUT_OF_RANGE("error.day.daynumber.outofrange"),
     MONTH_NUMBER_OUT_OF_RANGE("error.month.month.outofrange"),
     MONTHFACTORY_DAYOFWEEK_INVALID("error.monthfacotry.dayofweek.invalidinput"),
-    MONTHFACTORY_MONTH_INVALID("error.monthfactory.month.invalidinput");
+    MONTHFACTORY_MONTH_INVALID("error.monthfactory.month.invalidinput"),
+    WORKORDER_DAYOFWEEK_NULL("error.workorder.dayofweek.null");
 
     private final String messageKey;
 

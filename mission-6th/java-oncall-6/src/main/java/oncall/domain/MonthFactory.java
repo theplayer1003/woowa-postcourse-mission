@@ -24,6 +24,11 @@ public class MonthFactory {
     public static Month of(String month, String dayOfWeek) {
         final int monthNumber = parseMonthNubmer(month);
         DayOfWeek currentDayOfWeek = parseDayOfWeek(dayOfWeek);
+
+        if(!MONTH_MAX_DAYS.containsKey(monthNumber)) {
+            throw new IllegalArgumentException("올바르지 않은 월 값");
+        }
+
         final Integer monthMaxDay = MONTH_MAX_DAYS.get(monthNumber);
 
         final List<Day> days = getDays(monthNumber, currentDayOfWeek, monthMaxDay);

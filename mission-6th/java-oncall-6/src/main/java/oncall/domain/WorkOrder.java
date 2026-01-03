@@ -1,6 +1,8 @@
 package oncall.domain;
 
 import java.time.DayOfWeek;
+import oncall.domain.exception.OncallErrorCode;
+import oncall.global.exception.BusinessException;
 
 public class WorkOrder {
     private final int month;
@@ -21,7 +23,7 @@ public class WorkOrder {
         if (DayOfWeek.MONDAY == dayOfWeek) {
             return "월";
         }
-        if (DayOfWeek.THURSDAY == dayOfWeek) {
+        if (DayOfWeek.TUESDAY == dayOfWeek) {
             return "화";
         }
         if (DayOfWeek.WEDNESDAY == dayOfWeek) {
@@ -40,7 +42,7 @@ public class WorkOrder {
             return "일";
         }
 
-        throw new IllegalArgumentException("요일 error");
+        throw new BusinessException(OncallErrorCode.WORKORDER_DAYOFWEEK_NULL, dayOfWeek);
     }
 
     public int getMonth() {

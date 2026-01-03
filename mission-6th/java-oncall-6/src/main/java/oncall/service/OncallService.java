@@ -7,25 +7,34 @@ import oncall.domain.MonthFactory;
 import oncall.domain.WorkOrder;
 import oncall.domain.WorkOrderEditor;
 import oncall.domain.WorkOrders;
+import oncall.infra.MonthRepository;
 
 public class OncallService {
-    private Month month;
-    private WorkOrderEditor workOrderEditor;
+    private final MonthRepository monthRepository;
 
-    public void getMonth(MonthRequestDto monthRequestDto) {
+    public OncallService(MonthRepository monthRepository) {
+        this.monthRepository = monthRepository;
+    }
+
+    public Month saveMonth(MonthRequestDto monthRequestDto) {
         final String monthInput = monthRequestDto.month();
         final String dayOfWeek = monthRequestDto.dayOfWeek();
 
-        month = MonthFactory.of(monthInput, dayOfWeek);
+        final Month month = MonthFactory.of(monthInput, dayOfWeek);
+
+        monthRepository.save(month);
+
+        return month;
     }
 
-    public List<WorkLogResponse> getWorkLog(WorkOrderRequestDto workOrderRequestDto) {
+    public List<WorkLogResponse> getWorkLog(WorkOrderRequestDto workOrderRequestDto, int monthNumber) {
         final String s = workOrderRequestDto.weekdayList();
         final String s1 = workOrderRequestDto.holidayList();
 
-        workOrderEditor = new WorkOrderEditor(s, s1);
+        final WorkOrderEditor workOrderEditor = new WorkOrderEditor(s, s1);
 
-        final WorkOrders workOrders = workOrderEditor.calculateWorkOrder(month);
+        final WorkOrders workOrders = workOrderEditor.calculateWorkOrder(
+                monthRepository.findByMonthNumber(monthNumber));
 
         final List<WorkOrder> workOrders1 = workOrders.getWorkOrders();
 

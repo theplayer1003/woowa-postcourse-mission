@@ -20,4 +20,17 @@ public class RetryHandler {
             }
         }
     }
+
+    public static void retryUntilSuccess(Runnable runnable, Consumer<String> errorPrinter) {
+        while (true) {
+            try {
+                runnable.run();
+                return;
+            } catch (BusinessException e) {
+                errorPrinter.accept(e.getMessage());
+            } catch (IllegalArgumentException e) {
+                errorPrinter.accept(e.getMessage());
+            }
+        }
+    }
 }
