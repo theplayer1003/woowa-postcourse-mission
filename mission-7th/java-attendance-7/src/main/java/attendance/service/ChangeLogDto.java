@@ -35,3 +35,5 @@ public record ChangeLogDto(String text) {
         return new ChangeLogDto(sb.toString());
     }
 }
+// 데이터만 실어보내고 리팩토링
+// 출력을 위해 새로운 데이터(객체)를 만들어야할때도 있다.

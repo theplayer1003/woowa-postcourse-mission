@@ -34,6 +34,14 @@ public class Attendance {
         return false;
     }
 
+    public boolean checkAttendanceStatus(AttendanceStatus target) {
+        if (status.equals(target)) {
+            return true;
+        }
+
+        return false;
+    }
+
     public AttendanceStatus getStatus() {
         return status;
     }

@@ -2,7 +2,9 @@ package attendance.domain.crew;
 
 import attendance.domain.attendance.Attendance;
 import attendance.domain.attendance.AttendanceStatus;
+import attendance.domain.campus.CrewStatus;
 import attendance.domain.campus.StudyTime;
+import attendance.service.AttendanceLogDto;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -66,6 +68,12 @@ public class Crew {
                 .orElseThrow(() -> new IllegalArgumentException("잘못된 형식을 입력하였습니다."));
     }
 
+    public int countAttendanceStatus(AttendanceStatus target) {
+        return (int) attendLog.stream()
+                .filter(attendance -> attendance.checkAttendanceStatus(target))
+                .count();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof Crew crew)) {
@@ -77,5 +85,22 @@ public class Crew {
     @Override
     public int hashCode() {
         return Objects.hashCode(nickName);
+    }
+
+    public String getNickName() {
+        return nickName;
+    }
+
+    public List<Attendance> getAttendLog() {
+        return attendLog;
+    }
+
+    public CrewStatus getStatus() {
+        final int lateCount = this.countAttendanceStatus(AttendanceStatus.LATE);
+        final int absentCount = this.countAttendanceStatus(AttendanceStatus.ABSENT);
+
+        final int totalCount = (lateCount / 3) + absentCount;
+
+        return CrewStatus.from(totalCount);
     }
 }

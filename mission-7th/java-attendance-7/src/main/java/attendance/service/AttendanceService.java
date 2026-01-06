@@ -1,6 +1,8 @@
 package attendance.service;
 
 import attendance.domain.attendance.Attendance;
+import attendance.domain.attendance.AttendanceStatus;
+import attendance.domain.campus.CrewStatus;
 import attendance.domain.crew.Crew;
 import attendance.domain.crew.Crews;
 import java.time.LocalDateTime;
@@ -25,5 +27,16 @@ public class AttendanceService {
         final Attendance afterChange = targetCrew.changeLog(targetTime);
 
         return ChangeLogDto.from(beforeChange, afterChange);
+    }
+
+    public AttendanceLogDto findAttendanceInfoByName(String targetName) {
+        final Crew targetCrew = crews.findByName(targetName);
+
+
+
+        CrewStatus crewStatus = targetCrew.getStatus();
+
+
+        return AttendanceLogDto.from(targetCrew.getAttendLog(), attendancecount, lateCount, absentCount);
     }
 }
