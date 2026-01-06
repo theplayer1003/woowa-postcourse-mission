@@ -22,7 +22,6 @@ public class AttendanceService {
         final Crew targetCrew = crews.findByName(targetName);
 
         final Attendance beforeChange = targetCrew.findAndCopyAttendanceBy(targetTime);
-
         final Attendance afterChange = targetCrew.changeLog(targetTime);
 
         return ChangeLogDto.from(beforeChange, afterChange);
