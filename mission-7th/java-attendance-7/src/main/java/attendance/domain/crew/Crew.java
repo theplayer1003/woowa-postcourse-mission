@@ -25,7 +25,7 @@ public class Crew {
         return false;
     }
 
-    public void addAttendLog(LocalDateTime targetTime) {
+    public Attendance addAttendLog(LocalDateTime targetTime) {
         final StudyTime rule = StudyTime.findBy(targetTime);
         final int timeDiffrence = rule.calculateDifferent(LocalTime.from(targetTime));
 
@@ -34,6 +34,27 @@ public class Crew {
                 LocalTime.from(targetTime));
 
         attendLog.add(attendance);
+
+        return attendance;
+    }
+
+    public Attendance findAndCopyAttendanceBy(LocalDateTime targetTime) {
+        return findAttendanceByDate(targetTime);
+    }
+
+    public Attendance changeLog(LocalDateTime targetTime) {
+        final Attendance targetAttendacne = findAttendanceByDate(targetTime);
+
+        final boolean remove = attendLog.remove(targetAttendacne);
+
+        return this.addAttendLog(targetTime);
+    }
+
+    private Attendance findAttendanceByDate(LocalDateTime targetTime) {
+        return attendLog.stream()
+                .filter(attendance -> attendance.isSameDate(LocalDate.from(targetTime)))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("잘못된 형식을 입력하였습니다."));
     }
 
     @Override

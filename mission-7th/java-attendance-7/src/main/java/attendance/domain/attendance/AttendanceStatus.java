@@ -22,4 +22,8 @@ public enum AttendanceStatus {
                 .findFirst()
                 .orElseThrow();
     }
+
+    public String getDescription() {
+        return this.description;
+    }
 }
