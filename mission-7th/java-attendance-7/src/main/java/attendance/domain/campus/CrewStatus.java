@@ -25,4 +25,8 @@ public enum CrewStatus {
                 .findFirst()
                 .orElse(NONE);
     }
+
+    public String getDescription() {
+        return this.description;
+    }
 }

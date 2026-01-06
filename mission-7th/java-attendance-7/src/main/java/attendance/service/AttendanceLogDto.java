@@ -10,12 +10,10 @@ import java.util.List;
 import java.util.Locale;
 
 public record AttendanceLogDto(
-        String nickname,
         List<DailyAttendanceLog> logs,
         int attendanceCount,
         int lateCount,
         int absentCount,
         String crewStatus
-
 ) {
 }

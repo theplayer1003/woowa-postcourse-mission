@@ -2,14 +2,21 @@ package attendance.domain.crew;
 
 import attendance.domain.attendance.Attendance;
 import attendance.domain.attendance.AttendanceStatus;
+import attendance.domain.attendance.DailyAttendanceLog;
+import attendance.domain.attendance.MonthlyAttendacneLog;
 import attendance.domain.campus.CrewStatus;
 import attendance.domain.campus.StudyTime;
 import attendance.service.AttendanceLogDto;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.Month;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Crew {
     private final String nickName;
@@ -102,5 +109,38 @@ public class Crew {
         final int totalCount = (lateCount / 3) + absentCount;
 
         return CrewStatus.from(totalCount);
+    }
+
+    public MonthlyAttendacneLog getMonthlyHistory(LocalDateTime now) {
+        final Map<LocalDate, Attendance> logMap = attendLog.stream()
+                .collect(Collectors.toMap(Attendance::getDate, a -> a));
+
+        List<DailyAttendanceLog> history = new ArrayList<>();
+        final LocalDate nowDate = LocalDate.from(now);
+        final LocalDate firstDayOfMonth = nowDate.withDayOfMonth(1);
+
+        final List<DailyAttendanceLog> collect = firstDayOfMonth.datesUntil(nowDate)
+                .filter(date -> StudyTime.isSchoolDay(date))
+                .map(date -> mapToDailyLog(date, logMap))
+                .collect(Collectors.toList());
+
+        return new MonthlyAttendacneLog(collect);
+    }
+
+    private DailyAttendanceLog mapToDailyLog(LocalDate date, Map<LocalDate, Attendance> logMap) {
+        if (logMap.containsKey(date)) {
+            final Attendance attendance = logMap.get(date);
+            return new DailyAttendanceLog(
+                    date,
+                    attendance.getTime(),
+                    attendance.getStatus()
+            );
+        }
+
+        return new DailyAttendanceLog(
+                date,
+                null,
+                AttendanceStatus.ABSENT
+        );
     }
 }

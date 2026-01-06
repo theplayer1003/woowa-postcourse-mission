@@ -2,10 +2,14 @@ package attendance.service;
 
 import attendance.domain.attendance.Attendance;
 import attendance.domain.attendance.AttendanceStatus;
+import attendance.domain.attendance.DailyAttendanceLog;
+import attendance.domain.attendance.MonthlyAttendacneLog;
 import attendance.domain.campus.CrewStatus;
 import attendance.domain.crew.Crew;
 import attendance.domain.crew.Crews;
+import camp.nextstep.edu.missionutils.DateTimes;
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class AttendanceService {
     private final Crews crews;
@@ -32,11 +36,15 @@ public class AttendanceService {
     public AttendanceLogDto findAttendanceInfoByName(String targetName) {
         final Crew targetCrew = crews.findByName(targetName);
 
+        final MonthlyAttendacneLog monthlyHistory = targetCrew.getMonthlyHistory(DateTimes.now());
 
+        final int attendCount = monthlyHistory.countAttendanceStatus(AttendanceStatus.ATTENDANCE);
+        final int lateCount = monthlyHistory.countAttendanceStatus(AttendanceStatus.LATE);
+        final int absentCount = monthlyHistory.countAttendanceStatus(AttendanceStatus.ABSENT);
 
         CrewStatus crewStatus = targetCrew.getStatus();
 
-
-        return AttendanceLogDto.from(targetCrew.getAttendLog(), attendancecount, lateCount, absentCount);
+        return new AttendanceLogDto(monthlyHistory.getLogs(), attendCount, lateCount, absentCount,
+                crewStatus.getDescription());
     }
 }

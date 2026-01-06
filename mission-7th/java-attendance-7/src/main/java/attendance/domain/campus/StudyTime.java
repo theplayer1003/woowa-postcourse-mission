@@ -1,10 +1,12 @@
 package attendance.domain.campus;
 
 import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 import java.util.Arrays;
+import java.util.List;
 
 public enum StudyTime {
     MONDAY("월요일", DayOfWeek.MONDAY, LocalTime.of(13, 0)),
@@ -12,6 +14,10 @@ public enum StudyTime {
     WEDNESDAY("수요일", DayOfWeek.WEDNESDAY, LocalTime.of(10, 0)),
     THURSDAY("목요일", DayOfWeek.THURSDAY, LocalTime.of(10, 0)),
     FRIDAY("금요일", DayOfWeek.FRIDAY, LocalTime.of(10, 0));
+
+    private static final List<LocalDate> OFFICIAL_HOLIDAYS = List.of(
+            LocalDate.of(2024, 12, 25)
+    );
 
     private final String description;
     private final DayOfWeek dow;
@@ -35,5 +41,14 @@ public enum StudyTime {
                 target); // target 이 기준보다 미래면 양수 같으면 0 과거면 음수
 
         return (int) between;
+    }
+
+    public static boolean isSchoolDay(LocalDate date) {
+        if (OFFICIAL_HOLIDAYS.contains(date)) {
+            return false;
+        }
+
+        return Arrays.stream(StudyTime.values())
+                .anyMatch(studyTime -> studyTime.dow == date.getDayOfWeek());
     }
 }
