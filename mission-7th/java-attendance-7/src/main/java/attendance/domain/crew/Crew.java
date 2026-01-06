@@ -26,6 +26,10 @@ public class Crew {
     }
 
     public Attendance addAttendLog(LocalDateTime targetTime) {
+        if (isAlreadyExist(targetTime)) {
+            throw new IllegalArgumentException("이미 출석을 확인하였습니다. 필요한 경우 수정 기능을 이용해주세요.");
+        }
+
         final StudyTime rule = StudyTime.findBy(targetTime);
         final int timeDiffrence = rule.calculateDifferent(LocalTime.from(targetTime));
 
@@ -36,6 +40,11 @@ public class Crew {
         attendLog.add(attendance);
 
         return attendance;
+    }
+
+    private boolean isAlreadyExist(LocalDateTime target) {
+        return attendLog.stream()
+                .anyMatch(attendance -> attendance.isSameDate(LocalDate.from(target)));
     }
 
     public Attendance findAndCopyAttendanceBy(LocalDateTime targetTime) {
