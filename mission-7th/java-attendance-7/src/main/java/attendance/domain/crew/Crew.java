@@ -75,42 +75,6 @@ public class Crew {
                 .orElseThrow(() -> new IllegalArgumentException("잘못된 형식을 입력하였습니다."));
     }
 
-    public int countAttendanceStatus(AttendanceStatus target) {
-        return (int) attendLog.stream()
-                .filter(attendance -> attendance.checkAttendanceStatus(target))
-                .count();
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (!(o instanceof Crew crew)) {
-            return false;
-        }
-        return Objects.equals(nickName, crew.nickName);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(nickName);
-    }
-
-    public String getNickName() {
-        return nickName;
-    }
-
-    public List<Attendance> getAttendLog() {
-        return attendLog;
-    }
-
-    public CrewStatus getStatus() {
-        final int lateCount = this.countAttendanceStatus(AttendanceStatus.LATE);
-        final int absentCount = this.countAttendanceStatus(AttendanceStatus.ABSENT);
-
-        final int totalCount = (lateCount / 3) + absentCount;
-
-        return CrewStatus.from(totalCount);
-    }
-
     public MonthlyAttendacneLog getMonthlyHistory(LocalDateTime now) {
         final Map<LocalDate, Attendance> logMap = attendLog.stream()
                 .collect(Collectors.toMap(Attendance::getDate, a -> a));
@@ -142,5 +106,26 @@ public class Crew {
                 null,
                 AttendanceStatus.ABSENT
         );
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Crew crew)) {
+            return false;
+        }
+        return Objects.equals(nickName, crew.nickName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(nickName);
+    }
+
+    public String getNickName() {
+        return nickName;
+    }
+
+    public List<Attendance> getAttendLog() {
+        return attendLog;
     }
 }

@@ -42,9 +42,9 @@ public class AttendanceService {
         final int lateCount = monthlyHistory.countAttendanceStatus(AttendanceStatus.LATE);
         final int absentCount = monthlyHistory.countAttendanceStatus(AttendanceStatus.ABSENT);
 
-        CrewStatus crewStatus = targetCrew.getStatus();
+        final CrewStatus status = monthlyHistory.getStatus();
 
         return new AttendanceLogDto(monthlyHistory.getLogs(), attendCount, lateCount, absentCount,
-                crewStatus.getDescription());
+                status.getDescription());
     }
 }
