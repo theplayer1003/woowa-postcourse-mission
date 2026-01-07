@@ -8,9 +8,13 @@ import attendance.domain.campus.CrewStatus;
 import attendance.domain.crew.Crew;
 import attendance.domain.crew.Crews;
 import camp.nextstep.edu.missionutils.DateTimes;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.TextStyle;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 public class AttendanceService {
@@ -20,10 +24,12 @@ public class AttendanceService {
         this.crews = crews;
     }
 
-    public void registAttendance(String targetName, LocalDateTime targetTime) {
+    public AttendanceRegistResponseDto registAttendance(String targetName, LocalDateTime targetTime) {
         final Crew targetCrew = crews.findByName(targetName);
 
         final Attendance attendance = targetCrew.addAttendLog(targetTime);
+
+        return AttendanceRegistResponseDto.from(attendance);
     }
 
     public ChangeLogDto changeAttendance(String targetName, LocalDateTime targetTime) {
@@ -46,7 +52,7 @@ public class AttendanceService {
 
         final CrewStatus status = monthlyHistory.getStatus();
 
-        return new AttendanceLogDto(monthlyHistory.getLogs(), attendCount, lateCount, absentCount,
+        return new AttendanceLogDto(monthlyHistory.getName(), monthlyHistory.getLogs(), attendCount, lateCount, absentCount,
                 status.getDescription());
     }
 

@@ -21,4 +21,16 @@ public class DailyAttendanceLog {
 
         return false;
     }
+
+    public LocalDate getLocalDate() {
+        return localDate;
+    }
+
+    public LocalTime getTime() {
+        return time;
+    }
+
+    public AttendanceStatus getStatus() {
+        return status;
+    }
 }
