@@ -4,9 +4,11 @@ import attendance.domain.campus.CrewStatus;
 import java.util.List;
 
 public class MonthlyAttendacneLog {
+    private final String name;
     private final List<DailyAttendanceLog> logs;
 
-    public MonthlyAttendacneLog(List<DailyAttendanceLog> logs) {
+    public MonthlyAttendacneLog(String name, List<DailyAttendanceLog> logs) {
+        this.name = name;
         this.logs = logs;
     }
 
@@ -27,5 +29,9 @@ public class MonthlyAttendacneLog {
 
     public List<DailyAttendanceLog> getLogs() {
         return logs;
+    }
+
+    public String getName() {
+        return name;
     }
 }

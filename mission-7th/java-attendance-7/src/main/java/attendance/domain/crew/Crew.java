@@ -88,7 +88,7 @@ public class Crew {
                 .map(date -> mapToDailyLog(date, logMap))
                 .collect(Collectors.toList());
 
-        return new MonthlyAttendacneLog(collect);
+        return new MonthlyAttendacneLog(this.nickName, collect);
     }
 
     private DailyAttendanceLog mapToDailyLog(LocalDate date, Map<LocalDate, Attendance> logMap) {

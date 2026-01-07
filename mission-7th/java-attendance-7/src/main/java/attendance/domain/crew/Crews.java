@@ -15,4 +15,10 @@ public class Crews {
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("등록되지 않은 닉네임입니다."));
     }
+
+    public List<String> getAllCrewName() {
+        return crews.stream()
+                .map(crew -> crew.getNickName())
+                .toList();
+    }
 }
