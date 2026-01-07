@@ -8,9 +8,11 @@ import attendance.domain.campus.CrewStatus;
 import attendance.domain.crew.Crew;
 import attendance.domain.crew.Crews;
 import camp.nextstep.edu.missionutils.DateTimes;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.time.format.TextStyle;
 import java.util.Comparator;
 import java.util.List;
@@ -52,7 +54,8 @@ public class AttendanceService {
 
         final CrewStatus status = monthlyHistory.getStatus();
 
-        return new AttendanceLogDto(monthlyHistory.getName(), monthlyHistory.getLogs(), attendCount, lateCount, absentCount,
+        return new AttendanceLogDto(monthlyHistory.getName(), monthlyHistory.getLogs(), attendCount, lateCount,
+                absentCount,
                 status.getDescription());
     }
 
@@ -85,5 +88,24 @@ public class AttendanceService {
                                 .thenComparing(CrewConditionDto::name)
                 )
                 .toList();
+    }
+
+    public void checkCrewExist(String nickName) {
+        final Crew byName = crews.findByName(nickName);
+    }
+
+    public void isCorrectDate(LocalDateTime now) {
+        final DayOfWeek dow = now.getDayOfWeek();
+        if (dow == DayOfWeek.SATURDAY || dow == DayOfWeek.SUNDAY) {
+            final String format = now.format(DateTimeFormatter.ofPattern("MM월 dd일 EEEE", Locale.KOREA));
+            throw new IllegalArgumentException(String.format("[ERROR] %s은 등교일이 아닙니다.", format));
+        }
+    }
+
+    public void checkOperationTime(LocalDateTime time) {
+        final int hour = time.getHour();
+        if (hour < 8 || hour >= 23) {
+            throw new IllegalArgumentException("[ERROR] 캠퍼스 운영 시간에만 출석이 가능합니다.");
+        }
     }
 }

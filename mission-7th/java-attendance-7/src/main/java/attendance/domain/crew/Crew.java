@@ -28,7 +28,7 @@ public class Crew {
     }
 
     public boolean findByName(String target) {
-        if (nickName == target) {
+        if (Objects.equals(this.nickName, target)) {
             return true;
         }
         return false;

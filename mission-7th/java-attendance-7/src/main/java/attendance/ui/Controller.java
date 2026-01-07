@@ -34,16 +34,12 @@ public class Controller {
         init();
 
         while (true) {
-            try {
-                final String command = inputView.getMenuSelect(DateTimes.now());
-                if ("Q".equals(command)) {
-                    return;
-                }
-
-                processCommand(command);
-            } catch (IllegalArgumentException | DateTimeParseException e) {
-                System.out.println("[ERROR] " + e.getMessage());
+            final String command = inputView.getMenuSelect(DateTimes.now());
+            if ("Q".equals(command)) {
+                return;
             }
+
+            processCommand(command);
         }
     }
 
@@ -106,14 +102,22 @@ public class Controller {
     }
 
     private void attendanceCheck() {
+        attendanceService.isCorrectDate(DateTimes.now());
+
         final String nickName = inputView.getNickName();
+        attendanceService.checkCrewExist(nickName);
+
         final String attendanceTime = inputView.getAttendanceTime();
 
         LocalTime time = parseTime(attendanceTime);
-        final LocalDateTime dateTime = LocalDateTime.from(time);
+        final LocalDate today = DateTimes.now().toLocalDate();
+        final LocalDateTime localDateTime = today.atTime(time);
+        //final LocalDateTime dateTime = LocalDateTime.from(time);
+
+        attendanceService.checkOperationTime(localDateTime);
 
         final AttendanceRegistResponseDto result = attendanceService.registAttendance(nickName,
-                dateTime);
+                localDateTime);
 
         outputView.printAttendanceRegist(result);
     }
@@ -122,7 +126,7 @@ public class Controller {
         try {
             return LocalTime.parse(attendanceTime);
         } catch (DateTimeParseException e) {
-            throw new IllegalArgumentException("시간 형식이 올바르지 않습니다.");
+            throw new IllegalArgumentException("[ERROR] 잘못된 형식을 입력하였습니다.");
         }
     }
 

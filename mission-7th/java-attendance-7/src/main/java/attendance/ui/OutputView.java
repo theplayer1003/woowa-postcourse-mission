@@ -34,6 +34,8 @@ public class OutputView {
     }
 
     public void printAttendanceLog(AttendanceLogDto dto) {
+        System.out.println();
+
         System.out.println("이번 달 " + dto.name() + "의 출석 기록입니다.");
 
         dto.logs().stream()
@@ -54,24 +56,25 @@ public class OutputView {
                 });
         System.out.println();
 
-        System.out.println("출석: " + dto.attendanceCount());
-        System.out.println("지각: " + dto.lateCount());
-        System.out.println("결석: " + dto.absentCount());
-        System.out.println();
+        System.out.println("출석: " + dto.attendanceCount() + "회");
+        System.out.println("지각: " + dto.lateCount() + "회");
+        System.out.println("결석: " + dto.absentCount() + "회");
 
+        System.out.println();
         System.out.println(dto.crewStatus() + "입니다.");
     }
 
     public void printAllCrewCondition(List<CrewConditionDto> dto) {
+        System.out.println();
+
         System.out.println("제적 위험자 조회 결과");
-        dto.stream()
-                .forEach(crewCondition -> {
-                    System.out.println("- " +
-                            crewCondition.name() + ": " +
-                            "결석 " + crewCondition.lateCount() + "회, " +
-                            "지각 " + crewCondition.lateCount() + "회" +
-                            " (" + crewCondition.status() + ")"
-                    );
-                });
+        dto.forEach(crewCondition -> {
+            System.out.println("- " +
+                    crewCondition.name() + ": " +
+                    "결석 " + crewCondition.absentCount() + "회, " +
+                    "지각 " + crewCondition.lateCount() + "회" +
+                    " (" + crewCondition.status() + ")"
+            );
+        });
     }
 }
