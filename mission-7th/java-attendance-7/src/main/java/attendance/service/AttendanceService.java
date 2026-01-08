@@ -2,22 +2,21 @@ package attendance.service;
 
 import attendance.domain.attendance.Attendance;
 import attendance.domain.attendance.AttendanceStatus;
-import attendance.domain.attendance.DailyAttendanceLog;
 import attendance.domain.attendance.MonthlyAttendacneLog;
 import attendance.domain.campus.CrewStatus;
 import attendance.domain.crew.Crew;
 import attendance.domain.crew.Crews;
+import attendance.service.dto.AttendanceLogDto;
+import attendance.service.dto.AttendanceRegistResponseDto;
+import attendance.service.dto.ChangeLogDto;
+import attendance.service.dto.CrewConditionDto;
 import camp.nextstep.edu.missionutils.DateTimes;
 import java.time.DayOfWeek;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.TextStyle;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
-import java.util.stream.Collectors;
 
 public class AttendanceService {
     private final Crews crews;

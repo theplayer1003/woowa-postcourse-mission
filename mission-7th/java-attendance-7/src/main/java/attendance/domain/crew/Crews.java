@@ -3,7 +3,7 @@ package attendance.domain.crew;
 import attendance.domain.attendance.Attendance;
 import attendance.domain.attendance.AttendanceStatus;
 import attendance.domain.campus.StudyTime;
-import attendance.service.CrewRequestDto;
+import attendance.service.dto.CrewRequestDto;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;

@@ -2,12 +2,12 @@ package attendance.ui;
 
 import attendance.domain.crew.Crews;
 import attendance.global.util.CsvReader;
-import attendance.service.AttendanceLogDto;
-import attendance.service.AttendanceRegistResponseDto;
+import attendance.service.dto.AttendanceLogDto;
+import attendance.service.dto.AttendanceRegistResponseDto;
 import attendance.service.AttendanceService;
-import attendance.service.ChangeLogDto;
-import attendance.service.CrewConditionDto;
-import attendance.service.CrewRequestDto;
+import attendance.service.dto.ChangeLogDto;
+import attendance.service.dto.CrewConditionDto;
+import attendance.service.dto.CrewRequestDto;
 import camp.nextstep.edu.missionutils.DateTimes;
 import java.time.LocalDate;
 import java.time.LocalDateTime;

@@ -4,19 +4,15 @@ import attendance.domain.attendance.Attendance;
 import attendance.domain.attendance.AttendanceStatus;
 import attendance.domain.attendance.DailyAttendanceLog;
 import attendance.domain.attendance.MonthlyAttendacneLog;
-import attendance.domain.campus.CrewStatus;
 import attendance.domain.campus.StudyTime;
-import attendance.service.AttendanceLogDto;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Crew {
     private final String nickName;

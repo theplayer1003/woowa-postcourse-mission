@@ -1,8 +1,7 @@
-package attendance.service;
+package attendance.service.dto;
 
 import attendance.domain.attendance.Attendance;
 import attendance.domain.attendance.AttendanceStatus;
-import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;

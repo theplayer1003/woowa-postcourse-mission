@@ -1,9 +1,9 @@
 package attendance.ui;
 
-import attendance.service.AttendanceLogDto;
-import attendance.service.AttendanceRegistResponseDto;
-import attendance.service.ChangeLogDto;
-import attendance.service.CrewConditionDto;
+import attendance.service.dto.AttendanceLogDto;
+import attendance.service.dto.AttendanceRegistResponseDto;
+import attendance.service.dto.ChangeLogDto;
+import attendance.service.dto.CrewConditionDto;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Locale;
