@@ -12,4 +12,10 @@ public class Inventory {
 
         this.items = items;
     }
+
+    public List<Stock> findbyName(String target) {
+        final List<Stock> stocks = items.get(target);
+
+        return stocks;
+    }
 }
