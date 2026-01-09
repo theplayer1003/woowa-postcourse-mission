@@ -21,4 +21,36 @@ public class Promotion {
         this.start = start;
         this.end = end;
     }
+
+//    public static final Promotion NONE = new Promotion("", 0, 0, null, null) {
+//
+//    }
+
+    public boolean isApplicable(LocalDate now) {
+        if (now.isAfter(start) && now.isBefore(end)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getBuy() {
+        return buy;
+    }
+
+    public int getGet() {
+        return get;
+    }
+
+    public LocalDate getStart() {
+        return start;
+    }
+
+    public LocalDate getEnd() {
+        return end;
+    }
 }

@@ -1,4 +1,4 @@
 package store.service.dto.request;
 
-public record OrderRequestDto(String order) {
+public record OrderRequestDto(String name, int quantity) {
 }

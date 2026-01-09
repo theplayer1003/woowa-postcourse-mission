@@ -8,10 +8,8 @@ import store.service.dto.request.OrderRequestDto;
 
 public class DomainParser {
 
-    public static Map<String, Integer> orderToMap(OrderRequestDto dto) {
-        final String orderString = dto.order();
-
-        return Arrays.stream(orderString.split(","))
+    public static Map<String, Integer> orderToMap(String userInput) {
+                return Arrays.stream(userInput.split(","))
                 .map(s -> s.replace("[", "")
                         .replace("]", "")
                         .trim())
